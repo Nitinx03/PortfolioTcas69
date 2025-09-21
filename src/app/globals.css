@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* design tokens */
+:root{
+  --bg: #f7f8fb;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --primary-500: #2563eb;
+  --primary-600: #1e40af;
+  --radius: 12px;
+  --shadow-sm: 0 8px 24px rgba(16,24,40,0.06);
+}
+
+/* base */
+@layer base {
+  html,body{
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--bg);
+    color: rgb(17 24 39);
+    line-height: 1.5;
+    margin:0;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+}
+
+/* components (modern, minimal) */
+@layer components {
+  .container-card {
+    @apply max-w-3xl mx-auto;
+  }
+
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(15,23,42,0.04);
+    padding: 1.25rem;
+  }
+
+  .form-label { @apply block text-sm font-medium text-gray-700 mb-1; }
+
+  .form-input {
+    @apply w-full px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm text-gray-800 transition-shadow;
+  }
+  .form-input:focus {
+    outline: none;
+    box-shadow: 0 6px 18px rgba(37,99,235,0.08);
+    border-color: var(--primary-500);
+  }
+
+  .form-textarea { @apply w-full px-4 py-3 border border-gray-200 rounded-lg text-sm; min-height:120px; }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium text-white;
+    background: linear-gradient(90deg,var(--primary-500), var(--primary-600));
+    box-shadow: 0 8px 24px rgba(37,99,235,0.12);
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .btn-primary:hover { transform: translateY(-3px); }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-3 py-2 rounded-lg text-sm font-medium bg-white border border-gray-200 text-gray-700;
+  }
+
+  .muted { color: var(--muted); font-size:0.95rem; }
+
+  .table-header { @apply text-sm text-gray-600 font-medium py-3 px-4 text-left; }
+  .table-cell { @apply py-3 px-4 border-b border-gray-100 text-sm text-gray-700; }
+
+  .student-link { @apply text-[color:var(--primary-600)] hover:underline; }
+}
+
+/* utilities */
+@layer utilities {
+  .form-grid { display: grid; gap: 0.75rem; }
+  @media (min-width:640px){ .cols-2 { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+}
+
+/* accessibility */
+:focus { outline: none; }
+:focus-visible { box-shadow: 0 0 0 4px rgba(37,99,235,0.12); border-radius: 0.5rem; }
